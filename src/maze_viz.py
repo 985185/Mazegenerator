@@ -51,16 +51,24 @@ class Visualizer(object):
 
         # Handle any potential saving
         if self.media_filename:
-            fig.savefig("{}{}.png".format(self.media_filename, "_generation"), frameon=None)
+            fig.savefig("{}{}.png".format(self.media_filename, "_generation"))
 
     def plot_walls(self):
         """ Plots the walls of a maze. This is used when generating the maze image"""
         for i in range(self.maze.num_rows):
             for j in range(self.maze.num_cols):
                 if self.maze.initial_grid[i][j].is_entry_exit == "entry":
-                    self.ax.text(j*self.cell_size, i*self.cell_size, "START", fontsize=7, weight="bold")
+                    # Add a green dot for start
+                    self.ax.add_patch(plt.Circle(((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size), 
+                                               0.3*self.cell_size, fc="green", ec="black", linewidth=2))
+                    self.ax.text((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size, "●", 
+                               fontsize=20*self.cell_size, ha="center", va="center", color="white", weight="bold")
                 elif self.maze.initial_grid[i][j].is_entry_exit == "exit":
-                    self.ax.text(j*self.cell_size, i*self.cell_size, "END", fontsize=7, weight="bold")
+                    # Add a red star for end
+                    self.ax.add_patch(plt.Circle(((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size), 
+                                               0.3*self.cell_size, fc="red", ec="black", linewidth=2))
+                    self.ax.text((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size, "★", 
+                               fontsize=18*self.cell_size, ha="center", va="center", color="white", weight="bold")
                 if self.maze.initial_grid[i][j].walls["top"]:
                     self.ax.plot([j*self.cell_size, (j+1)*self.cell_size],
                                  [i*self.cell_size, i*self.cell_size], color="k")
@@ -128,7 +136,7 @@ class Visualizer(object):
 
         # Handle any saving
         if self.media_filename:
-            fig.savefig("{}{}.png".format(self.media_filename, "_solution"), frameon=None)
+            fig.savefig("{}{}.png".format(self.media_filename, "_solution"))
 
     def show_generation_animation(self):
         """Function that animates the process of generating the a maze where path is a list
@@ -232,9 +240,17 @@ class Visualizer(object):
         for i in range(self.maze.num_rows):
             for j in range(self.maze.num_cols):
                 if self.maze.initial_grid[i][j].is_entry_exit == "entry":
-                    self.ax.text(j*self.cell_size, i*self.cell_size, "START", fontsize = 7, weight = "bold")
+                    # Add a green dot for start
+                    self.ax.add_patch(plt.Circle(((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size), 
+                                               0.3*self.cell_size, fc="green", ec="black", linewidth=2))
+                    self.ax.text((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size, "●", 
+                               fontsize=20*self.cell_size, ha="center", va="center", color="white", weight="bold")
                 elif self.maze.initial_grid[i][j].is_entry_exit == "exit":
-                    self.ax.text(j*self.cell_size, i*self.cell_size, "END", fontsize = 7, weight = "bold")
+                    # Add a red star for end
+                    self.ax.add_patch(plt.Circle(((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size), 
+                                               0.3*self.cell_size, fc="red", ec="black", linewidth=2))
+                    self.ax.text((j + 0.5)*self.cell_size, (i + 0.5)*self.cell_size, "★", 
+                               fontsize=18*self.cell_size, ha="center", va="center", color="white", weight="bold")
 
                 if self.maze.initial_grid[i][j].walls["top"]:
                     self.lines["{},{}: top".format(i, j)] = self.ax.plot([j*self.cell_size, (j+1)*self.cell_size],

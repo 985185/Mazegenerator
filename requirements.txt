@@ -1,1 +1,5 @@
 matplotlib==2.0.0
+pillow>=8.0.0
+reportlab>=3.6.0
+python-docx>=0.8.11
+odfpy>=1.4.1
