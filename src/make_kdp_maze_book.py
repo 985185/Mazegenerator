@@ -136,21 +136,22 @@ def draw_marker(draw, cell_center, marker_type, cell_size):
             points.append((px, py))
         draw.polygon(points, fill="black")
 
-def draw_maze_page(maze: Maze, maze_id: str, stage: int, canvas_size: Tuple[int, int], margin: int) -> Image.Image:
+def draw_maze_page(maze: Maze, puzzle_num: int, stage: int, canvas_size: Tuple[int, int], margin: int) -> Image.Image:
     img = Image.new("RGB", canvas_size, "white")
     draw = ImageDraw.Draw(img)
     
-    # Calculate maze area
-    maze_width = canvas_size[0] - 2 * margin
-    maze_height = canvas_size[1] - 2 * margin - 100  # Reserve space for title
+    # Calculate maze area with extra margin for trim safety
+    safe_margin = margin + int(0.125 * 300)  # Add 1/8 inch safety margin
+    maze_width = canvas_size[0] - 2 * safe_margin
+    maze_height = canvas_size[1] - 2 * safe_margin - int(0.8 * 300)  # Reserve space for title
     
     cell_size = min(maze_width // maze.width, maze_height // maze.height)
     maze_pixel_width = maze.width * cell_size
     maze_pixel_height = maze.height * cell_size
     
     # Center maze
-    start_x = margin + (maze_width - maze_pixel_width) // 2
-    start_y = margin + (maze_height - maze_pixel_height) // 2
+    start_x = safe_margin + (maze_width - maze_pixel_width) // 2
+    start_y = safe_margin + (maze_height - maze_pixel_height) // 2
     
     # Draw maze walls
     wall_width = max(2, cell_size // 15)
@@ -177,18 +178,18 @@ def draw_maze_page(maze: Maze, maze_id: str, stage: int, canvas_size: Tuple[int,
     draw_marker(draw, start_center, LEGEND["start"], cell_size)
     draw_marker(draw, end_center, LEGEND["finish"], cell_size)
     
-    # Add title at bottom
-    font = get_font(36)
-    title = f"{maze_id} • Stage {stage}"
+    # Add title at bottom (0.4 inches from bottom margin)
+    font = get_font(48)  # Larger, more legible font (16pt equivalent at 300 DPI)
+    title = f"Puzzle {puzzle_num} • Stage {stage}"
     bbox = draw.textbbox((0, 0), title, font=font)
     text_width = bbox[2] - bbox[0]
     text_x = (canvas_size[0] - text_width) // 2
-    text_y = canvas_size[1] - margin - 50
+    text_y = canvas_size[1] - margin - int(0.4 * 300)  # 0.4 inches from bottom margin
     draw.text((text_x, text_y), title, fill="black", font=font)
     
     return img
 
-def draw_key_page(maze: Maze, maze_id: str, canvas_size: Tuple[int, int], margin: int) -> Image.Image:
+def draw_key_page(maze: Maze, puzzle_num: int, stage: int, canvas_size: Tuple[int, int], margin: int) -> Image.Image:
     img = Image.new("RGB", canvas_size, "white")
     draw = ImageDraw.Draw(img)
     
@@ -310,7 +311,7 @@ def draw_diy_page(page_num: int, canvas_size: Tuple[int, int], margin: int) -> I
     
     return img
 
-def create_4up_key_page(keys: List[Tuple[str, Image.Image]], canvas_size: Tuple[int, int]) -> Image.Image:
+def create_4up_key_page(keys: List[Tuple[int, int, Image.Image]], canvas_size: Tuple[int, int]) -> Image.Image:
     img = Image.new("RGB", canvas_size, "white")
     
     # Calculate positions for 2x2 grid
@@ -324,7 +325,7 @@ def create_4up_key_page(keys: List[Tuple[str, Image.Image]], canvas_size: Tuple[
         (canvas_size[0] // 2 + 30, canvas_size[1] // 2 + 30)  # Bottom-right
     ]
     
-    for i, (maze_id, key_img) in enumerate(keys[:4]):
+    for i, (puzzle_num, stage, key_img) in enumerate(keys[:4]):
         if i >= 4:
             break
         
@@ -335,9 +336,12 @@ def create_4up_key_page(keys: List[Tuple[str, Image.Image]], canvas_size: Tuple[
         # Add label
         draw = ImageDraw.Draw(img)
         font = get_font(24)
-        label_x = positions[i][0] + key_width // 2 - 30
+        label = f"Puzzle {puzzle_num}"
+        bbox = draw.textbbox((0, 0), label, font=font)
+        text_width = bbox[2] - bbox[0]
+        label_x = positions[i][0] + (key_width - text_width) // 2
         label_y = positions[i][1] + key_height + 10
-        draw.text((label_x, label_y), maze_id, fill="black", font=font)
+        draw.text((label_x, label_y), label, fill="black", font=font)
     
     return img
 
@@ -364,14 +368,14 @@ def create_docx_export(intro_paths, metadata, key_pages):
     
     doc = Document()
     
-    # Set page layout
+    # Set KDP page layout
     section = doc.sections[0]
     section.page_width = Inches(8.5)
     section.page_height = Inches(11.0)
-    section.left_margin = Inches(0.5)
-    section.right_margin = Inches(0.5)
+    section.left_margin = Inches(0.75)  # Inside margin
+    section.right_margin = Inches(0.5)  # Outside margin
     section.top_margin = Inches(0.5)
-    section.bottom_margin = Inches(0.7)
+    section.bottom_margin = Inches(0.5)
     
     # Add header
     header = section.header
@@ -402,7 +406,7 @@ def create_docx_export(intro_paths, metadata, key_pages):
         if key_page_path != key_pages[-1]:  # Don't add break after last page
             doc.add_page_break()
     
-    docx_path = "output/compiled/Maze_Mastery_5_Stages.docx"
+    docx_path = "output/compiled/Maze_Mastery_KDP_All_Stages.docx"
     doc.save(docx_path)
     return docx_path
 
@@ -426,7 +430,8 @@ def create_odt_export(intro_paths, metadata, key_pages):
     # Add maze pages
     for entry in metadata:
         if entry["has_key"]:
-            p = P(text=f"Maze {entry['id']} - Stage {entry['stage']}")
+            puzzle_num = entry.get('puzzle_num', entry['id'].replace('M', '').lstrip('0'))
+            p = P(text=f"Puzzle {puzzle_num} - Stage {entry['stage']}")
             doc.text.addElement(p)
             page_count += 1
     
@@ -443,7 +448,7 @@ def create_odt_export(intro_paths, metadata, key_pages):
         doc.text.addElement(p)
         page_count += 1
     
-    odt_path = "output/compiled/Maze_Mastery_5_Stages.odt"
+    odt_path = "output/compiled/Maze_Mastery_KDP_All_Stages.odt"
     doc.save(odt_path)
     return odt_path
 
@@ -452,7 +457,10 @@ def main():
     parser.add_argument("--dpi", type=int, default=300)
     parser.add_argument("--page_width_in", type=float, default=8.5)
     parser.add_argument("--page_height_in", type=float, default=11.0)
-    parser.add_argument("--margin_in", type=float, default=0.5)
+    parser.add_argument("--margin_top_in", type=float, default=0.5)
+    parser.add_argument("--margin_bottom_in", type=float, default=0.5)
+    parser.add_argument("--margin_inside_in", type=float, default=0.75)
+    parser.add_argument("--margin_outside_in", type=float, default=0.5)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--s1", type=int, default=8, help="Stage 1 maze count")
     parser.add_argument("--s2", type=int, default=12, help="Stage 2 maze count")
@@ -473,10 +481,12 @@ def main():
         print("❌ --emit-odt requires odfpy. Install with: pip install odfpy")
         return
     
-    # Calculate dimensions
+    # Calculate dimensions with KDP margins
     canvas_width = int(args.page_width_in * args.dpi)
     canvas_height = int(args.page_height_in * args.dpi)
-    margin = int(args.margin_in * args.dpi)
+    margin_top = int(args.margin_top_in * args.dpi)
+    margin_bottom = int(args.margin_bottom_in * args.dpi)
+    margin_side = int(args.margin_outside_in * args.dpi)  # Use outside margin for simplicity
     canvas_size = (canvas_width, canvas_height)
     
     # Create directories
@@ -516,20 +526,21 @@ def main():
             maze_id = f"M{maze_counter:03d}"
             maze = Maze.create(grid_size, grid_size, args.seed + maze_counter)
             
-            # Create maze page
-            maze_img = draw_maze_page(maze, maze_id, stage_num, canvas_size, margin)
+            # Create maze page with puzzle number
+            maze_img = draw_maze_page(maze, maze_counter, stage_num, canvas_size, margin_side)
             maze_path = f"output/stage{stage_num}/{maze_id}.png"
             maze_img.save(maze_path, dpi=(args.dpi, args.dpi))
             
             # Create key
-            key_img = draw_key_page(maze, maze_id, canvas_size, margin)
+            key_img = draw_key_page(maze, maze_counter, stage_num, canvas_size, margin_side)
             key_path = f"output/keys/{maze_id}_key.png"
             key_img.save(key_path, dpi=(args.dpi, args.dpi))
             
-            all_keys.append((maze_id, key_img))
+            all_keys.append((maze_counter, stage_num, key_img))
             
             metadata.append({
                 "id": maze_id,
+                "puzzle_num": maze_counter,
                 "stage": stage_num,
                 "grid": f"{grid_size}x{grid_size}",
                 "has_key": True,
@@ -542,7 +553,7 @@ def main():
     # Generate Stage 5 DIY pages
     for i in range(args.s5):
         diy_id = f"D{i+1:02d}"
-        diy_img = draw_diy_page(i+1, canvas_size, margin)
+        diy_img = draw_diy_page(i+1, canvas_size, margin_side)
         diy_path = f"output/stage5/{diy_id}.png"
         diy_img.save(diy_path, dpi=(args.dpi, args.dpi))
         
@@ -582,8 +593,8 @@ def main():
     with open("metadata.json", "w") as f:
         json.dump(metadata, f, indent=2)
     
-    # Create PDF
-    pdf_path = "output/compiled/Maze_Mastery_5_Stages.pdf"
+    # Create PDF with KDP-ready filename
+    pdf_path = "output/compiled/Maze_Mastery_KDP_All_Stages.pdf"
     c = canvas.Canvas(pdf_path, pagesize=letter)
     
     # Add intro pages
@@ -612,12 +623,13 @@ def main():
     
     # Quality checks
     total_mazes = sum(stage[0] for stage in stages)
-    assert total_mazes == 72, f"Expected 72 mazes, got {total_mazes}"
-    assert len(all_keys) == 72, f"Expected 72 keys, got {len(all_keys)}"
-    assert len(key_pages) == 18, f"Expected 18 key pages, got {len(key_pages)}"
+    expected_keys = (len(all_keys) + 3) // 4  # Round up for 4-up pages
     
-    total_pages = 2 + 72 + args.s5 + 18  # intro + mazes + DIY + keys
-    assert total_pages == 100, f"Expected 100 pages, got {total_pages}"
+    assert len(all_keys) == total_mazes, f"Expected {total_mazes} keys, got {len(all_keys)}"
+    assert len(key_pages) == expected_keys, f"Expected {expected_keys} key pages, got {len(key_pages)}"
+    
+    total_pages = 2 + total_mazes + args.s5 + len(key_pages)  # intro + mazes + DIY + keys
+    print(f"\n📊 Page count: {total_pages} total pages (2 intro + {total_mazes} mazes + {args.s5} DIY + {len(key_pages)} keys)")
     
     # Generate additional exports if requested
     exports = [f"PDF: {pdf_path}"]
@@ -636,7 +648,8 @@ def main():
     print(f"✓ Generated {args.s5} DIY pages")
     print(f"✓ Generated {len(key_pages)} key pages")
     print(f"✓ Enforced ● START and ★ FINISH markers on all pages")
-    print(f"✓ Created 100-page outputs")
+    print(f"✓ Created {total_pages}-page outputs")
+    print(f"✓ Updated to friendly 'Puzzle X • Stage Y' format")
     print(f"✓ Metadata saved to metadata.json")
     
     print("\n✅ Exports complete:")

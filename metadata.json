@@ -1,6 +1,7 @@
 [
   {
     "id": "M001",
+    "puzzle_num": 1,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -9,6 +10,7 @@
   },
   {
     "id": "M002",
+    "puzzle_num": 2,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -17,6 +19,7 @@
   },
   {
     "id": "M003",
+    "puzzle_num": 3,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -25,6 +28,7 @@
   },
   {
     "id": "M004",
+    "puzzle_num": 4,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -33,6 +37,7 @@
   },
   {
     "id": "M005",
+    "puzzle_num": 5,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -41,6 +46,7 @@
   },
   {
     "id": "M006",
+    "puzzle_num": 6,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -49,6 +55,7 @@
   },
   {
     "id": "M007",
+    "puzzle_num": 7,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -57,6 +64,7 @@
   },
   {
     "id": "M008",
+    "puzzle_num": 8,
     "stage": 1,
     "grid": "5x5",
     "has_key": true,
@@ -65,6 +73,7 @@
   },
   {
     "id": "M009",
+    "puzzle_num": 9,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -73,6 +82,7 @@
   },
   {
     "id": "M010",
+    "puzzle_num": 10,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -81,6 +91,7 @@
   },
   {
     "id": "M011",
+    "puzzle_num": 11,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -89,6 +100,7 @@
   },
   {
     "id": "M012",
+    "puzzle_num": 12,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -97,6 +109,7 @@
   },
   {
     "id": "M013",
+    "puzzle_num": 13,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -105,6 +118,7 @@
   },
   {
     "id": "M014",
+    "puzzle_num": 14,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -113,6 +127,7 @@
   },
   {
     "id": "M015",
+    "puzzle_num": 15,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -121,6 +136,7 @@
   },
   {
     "id": "M016",
+    "puzzle_num": 16,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -129,6 +145,7 @@
   },
   {
     "id": "M017",
+    "puzzle_num": 17,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -137,6 +154,7 @@
   },
   {
     "id": "M018",
+    "puzzle_num": 18,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -145,6 +163,7 @@
   },
   {
     "id": "M019",
+    "puzzle_num": 19,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -153,6 +172,7 @@
   },
   {
     "id": "M020",
+    "puzzle_num": 20,
     "stage": 2,
     "grid": "7x7",
     "has_key": true,
@@ -161,6 +181,7 @@
   },
   {
     "id": "M021",
+    "puzzle_num": 21,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -169,6 +190,7 @@
   },
   {
     "id": "M022",
+    "puzzle_num": 22,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -177,6 +199,7 @@
   },
   {
     "id": "M023",
+    "puzzle_num": 23,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -185,6 +208,7 @@
   },
   {
     "id": "M024",
+    "puzzle_num": 24,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -193,6 +217,7 @@
   },
   {
     "id": "M025",
+    "puzzle_num": 25,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -201,6 +226,7 @@
   },
   {
     "id": "M026",
+    "puzzle_num": 26,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -209,6 +235,7 @@
   },
   {
     "id": "M027",
+    "puzzle_num": 27,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -217,6 +244,7 @@
   },
   {
     "id": "M028",
+    "puzzle_num": 28,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -225,6 +253,7 @@
   },
   {
     "id": "M029",
+    "puzzle_num": 29,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -233,6 +262,7 @@
   },
   {
     "id": "M030",
+    "puzzle_num": 30,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -241,6 +271,7 @@
   },
   {
     "id": "M031",
+    "puzzle_num": 31,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -249,6 +280,7 @@
   },
   {
     "id": "M032",
+    "puzzle_num": 32,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -257,6 +289,7 @@
   },
   {
     "id": "M033",
+    "puzzle_num": 33,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -265,6 +298,7 @@
   },
   {
     "id": "M034",
+    "puzzle_num": 34,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -273,6 +307,7 @@
   },
   {
     "id": "M035",
+    "puzzle_num": 35,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -281,6 +316,7 @@
   },
   {
     "id": "M036",
+    "puzzle_num": 36,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -289,6 +325,7 @@
   },
   {
     "id": "M037",
+    "puzzle_num": 37,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -297,6 +334,7 @@
   },
   {
     "id": "M038",
+    "puzzle_num": 38,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -305,6 +343,7 @@
   },
   {
     "id": "M039",
+    "puzzle_num": 39,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -313,6 +352,7 @@
   },
   {
     "id": "M040",
+    "puzzle_num": 40,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -321,6 +361,7 @@
   },
   {
     "id": "M041",
+    "puzzle_num": 41,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -329,6 +370,7 @@
   },
   {
     "id": "M042",
+    "puzzle_num": 42,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -337,6 +379,7 @@
   },
   {
     "id": "M043",
+    "puzzle_num": 43,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -345,6 +388,7 @@
   },
   {
     "id": "M044",
+    "puzzle_num": 44,
     "stage": 3,
     "grid": "10x10",
     "has_key": true,
@@ -353,6 +397,7 @@
   },
   {
     "id": "M045",
+    "puzzle_num": 45,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -361,6 +406,7 @@
   },
   {
     "id": "M046",
+    "puzzle_num": 46,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -369,6 +415,7 @@
   },
   {
     "id": "M047",
+    "puzzle_num": 47,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -377,6 +424,7 @@
   },
   {
     "id": "M048",
+    "puzzle_num": 48,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -385,6 +433,7 @@
   },
   {
     "id": "M049",
+    "puzzle_num": 49,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -393,6 +442,7 @@
   },
   {
     "id": "M050",
+    "puzzle_num": 50,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -401,6 +451,7 @@
   },
   {
     "id": "M051",
+    "puzzle_num": 51,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -409,6 +460,7 @@
   },
   {
     "id": "M052",
+    "puzzle_num": 52,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -417,6 +469,7 @@
   },
   {
     "id": "M053",
+    "puzzle_num": 53,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -425,6 +478,7 @@
   },
   {
     "id": "M054",
+    "puzzle_num": 54,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -433,6 +487,7 @@
   },
   {
     "id": "M055",
+    "puzzle_num": 55,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -441,6 +496,7 @@
   },
   {
     "id": "M056",
+    "puzzle_num": 56,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -449,6 +505,7 @@
   },
   {
     "id": "M057",
+    "puzzle_num": 57,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -457,6 +514,7 @@
   },
   {
     "id": "M058",
+    "puzzle_num": 58,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -465,6 +523,7 @@
   },
   {
     "id": "M059",
+    "puzzle_num": 59,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -473,6 +532,7 @@
   },
   {
     "id": "M060",
+    "puzzle_num": 60,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -481,6 +541,7 @@
   },
   {
     "id": "M061",
+    "puzzle_num": 61,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -489,6 +550,7 @@
   },
   {
     "id": "M062",
+    "puzzle_num": 62,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -497,6 +559,7 @@
   },
   {
     "id": "M063",
+    "puzzle_num": 63,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -505,6 +568,7 @@
   },
   {
     "id": "M064",
+    "puzzle_num": 64,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -513,6 +577,7 @@
   },
   {
     "id": "M065",
+    "puzzle_num": 65,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -521,6 +586,7 @@
   },
   {
     "id": "M066",
+    "puzzle_num": 66,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -529,6 +595,7 @@
   },
   {
     "id": "M067",
+    "puzzle_num": 67,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -537,6 +604,7 @@
   },
   {
     "id": "M068",
+    "puzzle_num": 68,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -545,6 +613,7 @@
   },
   {
     "id": "M069",
+    "puzzle_num": 69,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -553,6 +622,7 @@
   },
   {
     "id": "M070",
+    "puzzle_num": 70,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -561,6 +631,7 @@
   },
   {
     "id": "M071",
+    "puzzle_num": 71,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
@@ -569,6 +640,7 @@
   },
   {
     "id": "M072",
+    "puzzle_num": 72,
     "stage": 4,
     "grid": "15x15",
     "has_key": true,
